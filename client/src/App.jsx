@@ -4,10 +4,12 @@ import ChatsPage from "./pages/ChatsPage";
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/chats" element={<ChatsPage />} />
-    </Routes>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/chats" element={<ChatsPage />} />
+      </Routes>
+    </div>
   );
 };
 
