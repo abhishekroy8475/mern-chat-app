@@ -1,5 +1,6 @@
 import ErrorHandler from "../utils/errorHandler.js";
 import User from "../models/userModel.js";
+import generateToken from "../config/generateToken.js";
 
 export const registerUser = async (req, res, next) => {
   try {
@@ -23,6 +24,7 @@ export const registerUser = async (req, res, next) => {
         name: newUser.name,
         email: newUser.email,
         photo: newUser.photo,
+        token: generateToken(newUser._id),
       });
     } else {
       return next(
@@ -51,6 +53,7 @@ export const login = async (req, res, next) => {
         name: user.name,
         email: user.email,
         photo: user.photo,
+        token: generateToken(user._id.toString()),
       });
     } else {
       return next(new ErrorHandler("Email And Password Does Not Match!", 400));
@@ -60,3 +63,8 @@ export const login = async (req, res, next) => {
     return next(error);
   }
 };
+
+// demo route to test authMiddleware
+export const demo = async (req, res, next) => {
+  res.status(200).json(req.user)
+}
