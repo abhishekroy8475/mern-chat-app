@@ -63,8 +63,3 @@ export const login = async (req, res, next) => {
     return next(error);
   }
 };
-
-// demo route to test authMiddleware
-export const demo = async (req, res, next) => {
-  res.status(200).json(req.user)
-}
