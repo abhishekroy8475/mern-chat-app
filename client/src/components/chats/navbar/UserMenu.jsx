@@ -10,8 +10,16 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import ProfileModal from "../modals/ProfileModal";
+import { useNavigate } from "react-router-dom";
 
 const UserMenu = () => {
+  const navigate = useNavigate();
+
+  // Logout Handler
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
   return (
     <>
       {/* Need to convert to menu when adding notification feature */}
@@ -44,7 +52,7 @@ const UserMenu = () => {
             <ProfileModal>Profile</ProfileModal>
           </MenuItem>
           <MenuDivider />
-          <MenuItem>Log Out</MenuItem>
+          <MenuItem onClick={logoutHandler}>Log Out</MenuItem>
         </MenuList>
       </Menu>
     </>
