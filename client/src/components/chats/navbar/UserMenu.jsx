@@ -1,5 +1,15 @@
 import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Avatar, Button, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
+import ProfileModal from "../modals/ProfileModal";
 
 const UserMenu = () => {
   return (
@@ -26,13 +36,15 @@ const UserMenu = () => {
           <Avatar
             size="sm"
             name="Jack Miller"
-            src="https://res.cloudinary.com/dmjp05125/image/upload/v1694167632/chatify-images/default_ugvswk.png"
+            src="https://res.cloudinary.com/abhishek-roy-cloud/image/upload/v1694167632/chatify-images/default_ugvswk.png"
           />
         </MenuButton>
         <MenuList>
-            <MenuItem fontWeight="semibold">Profile</MenuItem>
-            <MenuDivider />
-            <MenuItem>Log Out</MenuItem>
+          <MenuItem fontWeight="semibold">
+            <ProfileModal>Profile</ProfileModal>
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem>Log Out</MenuItem>
         </MenuList>
       </Menu>
     </>

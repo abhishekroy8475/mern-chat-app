@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import Search from "./Search";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
