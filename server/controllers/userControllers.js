@@ -63,3 +63,27 @@ export const login = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const getUsers = async (req, res, next) => {
+  try {
+    const keyword = req.query.search
+      ? {
+          $or: [
+            { name: { $regex: req.query.search, $options: "i" } },
+            { email: { $regex: req.query.search, $options: "i" } },
+          ],
+        }
+      : {};
+
+    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }).select("name email photo");
+
+    if(users) {
+      return res.json(users)
+    } else {
+      return next(new ErrorHandler("Failed To Find User!", 500));
+    }
+  } catch (error) {
+    // sends response to client, NEED TO HANDLE!
+    return next(error);
+  }
+};

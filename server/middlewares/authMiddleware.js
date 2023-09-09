@@ -13,7 +13,7 @@ const protect = async (req, res, next) => {
         process.env.JWT_SECRET
       );
 
-      req.user = await User.findById(decoded.id).select("name email photo _id");
+      req.user = await User.findById(decoded.id).select("name email photo");
 
       next();
     } catch (error) {
