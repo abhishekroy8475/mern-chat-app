@@ -21,6 +21,7 @@ const UserMenu = () => {
           fontSize="20px"
           variant="outline"
           rounded="full"
+          p={1}
         >
           <Avatar
             size="sm"
