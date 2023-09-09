@@ -1,14 +1,21 @@
 import { Box } from "@chakra-ui/react";
 import Navbar from "../components/chats/navbar/Navbar";
+import { ChatState } from "../context/ChatProvider";
 
 const ChatsPage = () => {
+  const { user } = ChatState();
+
   return (
     <>
-      <Navbar />
-      <Box>
-        <Box>My Chats</Box>
-        <Box>ChatBox</Box>
-      </Box>
+      {user && (
+        <>
+          <Navbar />
+          <Box>
+            <Box>My Chats</Box>
+            <Box>ChatBox</Box>
+          </Box>
+        </>
+      )}
     </>
   );
 };
