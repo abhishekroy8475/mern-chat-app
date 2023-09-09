@@ -10,10 +10,14 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { ChatState } from "../../../context/ChatProvider";
 
 const ProfileModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
+
+  // My ChatState
+  const { user } = ChatState();
+
   return (
     <>
       <Box onClick={onOpen} w="100%" h="100%">
@@ -23,16 +27,12 @@ const ProfileModal = ({ children }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Jack Miller</ModalHeader>
+          <ModalHeader>{user.name}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image
-              objectFit="contain"
-              src="https://res.cloudinary.com/abhishek-roy-cloud/image/upload/v1694167632/chatify-images/default_ugvswk.png"
-              alt="Jack Miller"
-            />
+            <Image objectFit="contain" src={user.photo} alt={user.name} />
             <Text mt={3} textAlign="center" fontWeight="semibold" fontSize="xl">
-              Email: jackmiller@chatify.com
+              Email: {user.email}
             </Text>
           </ModalBody>
         </ModalContent>

@@ -11,9 +11,13 @@ import {
 } from "@chakra-ui/react";
 import ProfileModal from "../modals/ProfileModal";
 import { useNavigate } from "react-router-dom";
+import { ChatState } from "../../../context/ChatProvider";
 
 const UserMenu = () => {
   const navigate = useNavigate();
+
+  // My Chat State
+  const { user } = ChatState();
 
   // Logout Handler
   const logoutHandler = () => {
@@ -41,11 +45,7 @@ const UserMenu = () => {
           rounded="full"
           p={1}
         >
-          <Avatar
-            size="sm"
-            name="Jack Miller"
-            src="https://res.cloudinary.com/abhishek-roy-cloud/image/upload/v1694167632/chatify-images/default_ugvswk.png"
-          />
+          <Avatar size="sm" name={user.name} src={user.photo} />
         </MenuButton>
         <MenuList>
           <MenuItem fontWeight="semibold">
