@@ -31,16 +31,16 @@ const UserMenu = () => {
         isRound={true}
         variant="solid"
         aria-label="Done"
-        fontSize="20px"
+        fontSize={{base:"18px", md:"20px"}}
         icon={<BellIcon />}
-        mr={4}
+        mr={3}
       />
 
       <Menu>
         <MenuButton
           as={Button}
           leftIcon={<HamburgerIcon />}
-          fontSize="20px"
+          fontSize={{base:"18px", md:"20px"}}
           variant="outline"
           rounded="full"
           p={1}
@@ -49,7 +49,7 @@ const UserMenu = () => {
         </MenuButton>
         <MenuList>
           <MenuItem fontWeight="semibold">
-            <ProfileModal>Profile</ProfileModal>
+            <ProfileModal>My Profile</ProfileModal>
           </MenuItem>
           <MenuDivider />
           <MenuItem onClick={logoutHandler}>Log Out</MenuItem>

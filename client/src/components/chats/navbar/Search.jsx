@@ -18,7 +18,7 @@ const Search = () => {
 
   return (
     <>
-      <Button rightIcon={<Search2Icon />} colorScheme="blue" onClick={onOpen}>
+      <Button rightIcon={<Search2Icon />} size={{base:"sm", md:"md"}} colorScheme="blue" onClick={onOpen}>
         Search Users...
       </Button>
 

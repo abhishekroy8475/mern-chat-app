@@ -6,7 +6,12 @@ import UserMenu from "./UserMenu";
 const Navbar = () => {
   return (
     <>
-      <Flex alignItems='center' bg="whiteAlpha.800" p={3} borderWidth="5px" borderColor="gray.300">
+      <Flex
+        alignItems="center"
+        bg="whiteAlpha.800"
+        p={{ base: 2, lg: 3 }}
+        boxShadow="md"
+      >
         <Search />
         <Spacer />
         <Logo />
