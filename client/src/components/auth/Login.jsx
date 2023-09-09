@@ -57,9 +57,7 @@ const Login = () => {
       const data = { email, password };
       const url = "http://localhost:5000/api/v1/user/login";
 
-      await axios
-        .post(url, data, config)
-        .then((response) => setResponse(response.data));
+      const response = await axios.post(url, data, config);
 
       toast({
         title: "Success",
@@ -70,8 +68,9 @@ const Login = () => {
         isClosable: true,
       });
 
-      navigate("/chats");
       setLoading(false);
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
+      navigate("/chats");
     } catch (error) {
       toast({
         title: "Error",
