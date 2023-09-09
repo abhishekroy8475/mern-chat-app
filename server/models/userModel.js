@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
       default:
-        "https://res.cloudinary.com/dmjp05125/image/upload/v1694167632/chatify-images/default_ugvswk.png",
+        "https://res.cloudinary.com/abhishek-roy-cloud/image/upload/v1694167632/chatify-images/default_ugvswk.png",
     },
   },
   { timestamps: true }
