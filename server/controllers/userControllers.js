@@ -19,15 +19,41 @@ export const registerUser = async (req, res, next) => {
 
     if (newUser) {
       return res.status(201).json({
+        _id: newUser._id,
         name: newUser.name,
         email: newUser.email,
-        _id: newUser._id,
         photo: newUser.photo,
       });
     } else {
       return next(
         new ErrorHandler("Failed To Create User, Try After Sometime!", 500)
       );
+    }
+  } catch (error) {
+    // sends response to client, NEED TO HANDLE!
+    return next(error);
+  }
+};
+
+export const login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new ErrorHandler("Please Fill All The Fields!", 400));
+    }
+
+    const user = await User.findOne({ email });
+
+    if (user && (await user.matchPassword(password))) {
+      return res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        photo: user.photo,
+      });
+    } else {
+      return next(new ErrorHandler("Email And Password Does Not Match!", 400));
     }
   } catch (error) {
     // sends response to client, NEED TO HANDLE!
