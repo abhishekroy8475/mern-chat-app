@@ -27,9 +27,8 @@ const HomePage = () => {
   return (
     <Container maxW="xl" p={1}>
       <Box
-        bg="whiteAlpha.800"
+        bg="white"
         borderRadius="lg"
-        borderWidth="1px"
         boxShadow="md"
         p={3}
         textAlign="center"
@@ -41,10 +40,9 @@ const HomePage = () => {
       </Box>
       <Box
         borderRadius="lg"
-        borderWidth="1px"
         boxShadow="md"
         p={3}
-        bg="whiteAlpha.800"
+        bg="white"
       >
         <Tabs isFitted variant="soft-rounded">
           <TabList>

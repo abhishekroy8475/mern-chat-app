@@ -11,12 +11,13 @@ import {
   Flex,
   IconButton,
   Input,
-  Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
+import UserListItem from "../misc/UserListItem";
+import SkeletonAnim from "../anim/SkeletonAnim";
 
 const Search = ({ user }) => {
   const [query, setQuery] = useState();
@@ -94,9 +95,13 @@ const Search = ({ user }) => {
               />
             </Flex>
             <Box>
-              {results?.map((result) => {
-                return <Text key={result._id}>{result.name}</Text>;
-              })}
+              {loading ? (
+                <SkeletonAnim />
+              ) : (
+                results?.map((result) => {
+                  return <UserListItem key={result._id} result={result} />;
+                })
+              )}
             </Box>
           </DrawerBody>
         </DrawerContent>

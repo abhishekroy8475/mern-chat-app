@@ -7,7 +7,7 @@ const Navbar = ({ user }) => {
     <>
       <Flex
         alignItems="center"
-        bg="whiteAlpha.800"
+        bg="white"
         p={{ base: 2, lg: 3 }}
         boxShadow="md"
       >
