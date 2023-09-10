@@ -41,3 +41,18 @@ export const createChat = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const fetchChat = async (req, res, next) => {
+  try {
+    const result = await Chat.find({
+      users: { $elemMatch: { $eq: req.user._id } },
+    })
+      .populate("users", "-password")
+      .populate("groupAdmin", "-password")
+      .sort({ updatedAt: -1 });
+
+    return res.status(200).json(result);
+  } catch (error) {
+    return next(error);
+  }
+};
