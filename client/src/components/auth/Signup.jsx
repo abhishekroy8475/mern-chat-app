@@ -14,33 +14,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  // Handle password show / hide
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
-  // States for input
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-
-  // State for response
-  const [response, setResponse] = useState();
-
-  // Use Toast
-  const toast = useToast();
-
-  // Loading State
   const [loading, setLoading] = useState(false);
-
-  // use Navigate
+  const toast = useToast();
   const navigate = useNavigate();
 
-  // Submit Handler
+  const handleClick = () => setShow(!show);
+
   const submitHandler = async () => {
     setLoading(true);
 
-    // Empyt Field Validation
     if (!name || !email || !password || !confirmPassword) {
       toast({
         title: "Warning",
@@ -54,7 +41,6 @@ const Signup = () => {
       return;
     }
 
-    // Confirm Password Validation
     if (password !== confirmPassword) {
       toast({
         title: "Warning",

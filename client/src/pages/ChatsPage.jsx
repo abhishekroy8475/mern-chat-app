@@ -1,15 +1,26 @@
 import { Box } from "@chakra-ui/react";
-import Navbar from "../components/chats/navbar/Navbar";
-import { ChatState } from "../context/ChatProvider";
+import Navbar from "../components/navbar/Navbar";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ChatsPage = () => {
-  const { user } = ChatState();
+  const [user, setUser] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setUser(userInfo);
+
+    if (!userInfo) {
+      navigate("/");
+    }
+  },[navigate]);
 
   return (
     <>
       {user && (
         <>
-          <Navbar />
+          <Navbar user={user} />
           <Box>
             <Box>My Chats</Box>
             <Box>ChatBox</Box>

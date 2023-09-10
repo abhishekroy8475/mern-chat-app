@@ -11,27 +11,22 @@ import {
 } from "@chakra-ui/react";
 import ProfileModal from "../modals/ProfileModal";
 import { useNavigate } from "react-router-dom";
-import { ChatState } from "../../../context/ChatProvider";
 
-const UserMenu = () => {
+const UserMenu = ({ user }) => {
   const navigate = useNavigate();
 
-  // My Chat State
-  const { user } = ChatState();
-
-  // Logout Handler
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
+
   return (
     <>
-      {/* Need to convert to menu when adding notification feature */}
       <IconButton
         isRound={true}
         variant="solid"
         aria-label="Done"
-        fontSize={{base:"18px", md:"20px"}}
+        fontSize={{ base: "18px", md: "20px" }}
         icon={<BellIcon />}
         mr={3}
       />
@@ -40,7 +35,7 @@ const UserMenu = () => {
         <MenuButton
           as={Button}
           leftIcon={<HamburgerIcon />}
-          fontSize={{base:"18px", md:"20px"}}
+          fontSize={{ base: "18px", md: "20px" }}
           variant="outline"
           rounded="full"
           p={1}
@@ -49,7 +44,7 @@ const UserMenu = () => {
         </MenuButton>
         <MenuList>
           <MenuItem fontWeight="semibold">
-            <ProfileModal>My Profile</ProfileModal>
+            <ProfileModal user={user}>My Profile</ProfileModal>
           </MenuItem>
           <MenuDivider />
           <MenuItem onClick={logoutHandler}>Log Out</MenuItem>

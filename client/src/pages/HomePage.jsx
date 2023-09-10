@@ -17,9 +17,9 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userInfo"));
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (user) {
+    if (userInfo) {
       navigate("/chats");
     }
   }, [navigate]);
@@ -44,7 +44,7 @@ const HomePage = () => {
         borderWidth="1px"
         boxShadow="md"
         p={3}
-        bg="whiteAlpha.900"
+        bg="whiteAlpha.800"
       >
         <Tabs isFitted variant="soft-rounded">
           <TabList>

@@ -16,16 +16,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { ChatState } from "../../../context/ChatProvider";
 import axios from "axios";
 
-const Search = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const Search = ({ user }) => {
   const [query, setQuery] = useState();
-  const toast = useToast();
-  const [Loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
-  const { user } = ChatState();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const searchHandler = async () => {
     if (!query) {
@@ -92,6 +90,7 @@ const Search = () => {
                 colorScheme="blue"
                 ml={2}
                 onClick={searchHandler}
+                isLoading={loading}
               />
             </Flex>
             <Box>

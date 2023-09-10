@@ -1,6 +1,6 @@
 import epxpress from "express";
-import { getUsers, login, registerUser } from "../controllers/userControllers.js";
 import protect from "../middlewares/authMiddleware.js";
+import { getUsers, login, registerUser } from "../controllers/userControllers.js";
 
 const router = epxpress.Router();
 

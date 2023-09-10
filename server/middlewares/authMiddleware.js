@@ -17,7 +17,9 @@ const protect = async (req, res, next) => {
 
       next();
     } catch (error) {
-      return next(new ErrorHandler("Authorization Failed, Please Login Again", 401));
+      return next(
+        new ErrorHandler("Authorization Failed, Please Login Again", 401)
+      );
     }
   } else {
     return next(

@@ -32,7 +32,6 @@ export const registerUser = async (req, res, next) => {
       );
     }
   } catch (error) {
-    // sends response to client, NEED TO HANDLE!
     return next(error);
   }
 };
@@ -59,7 +58,6 @@ export const login = async (req, res, next) => {
       return next(new ErrorHandler("Email And Password Does Not Match!", 400));
     }
   } catch (error) {
-    // sends response to client, NEED TO HANDLE!
     return next(error);
   }
 };
@@ -75,15 +73,16 @@ export const getUsers = async (req, res, next) => {
         }
       : {};
 
-    const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }).select("name email photo");
+    const users = await User.find(keyword)
+      .find({ _id: { $ne: req.user._id } })
+      .select("name email photo");
 
-    if(users) {
-      return res.json(users)
+    if (users) {
+      return res.json(users);
     } else {
       return next(new ErrorHandler("Failed To Find User!", 500));
     }
   } catch (error) {
-    // sends response to client, NEED TO HANDLE!
     return next(error);
   }
 };

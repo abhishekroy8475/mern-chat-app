@@ -10,13 +10,9 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { ChatState } from "../../../context/ChatProvider";
 
-const ProfileModal = ({ children }) => {
+const ProfileModal = ({ children, user }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // My ChatState
-  const { user } = ChatState();
 
   return (
     <>
