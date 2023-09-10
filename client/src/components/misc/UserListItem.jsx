@@ -1,6 +1,6 @@
 import { Avatar, Box, Text } from "@chakra-ui/react";
 
-const UserListItem = ({ result }) => {
+const UserListItem = ({ result, handleFunc }) => {
   return (
     <Box
       display="flex"
@@ -14,6 +14,7 @@ const UserListItem = ({ result }) => {
         background: "#0066cc",
         color: "white",
       }}
+      onClick={handleFunc}
     >
       <Avatar bg="white" name={result.name} src={result.photo} />
       <Box ml={2}>

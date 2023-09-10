@@ -17,7 +17,7 @@ export const createChat = async (req, res, next) => {
     }).populate("users", "-password");
 
     if (chatExist.length > 0) {
-      return res.status(200).json(chatExist);
+      return res.status(200).json(chatExist[0]);
     }
 
     const chatData = {

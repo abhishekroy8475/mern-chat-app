@@ -62,6 +62,36 @@ const Search = ({ user }) => {
     }
   };
 
+  const createChat = async (userId) => {
+    try {
+      setLoading(true);
+
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const url = "http://localhost:5000/api/v1/chat/create";
+
+      const response = await axios.post(url, { userId }, config);
+
+      console.log(response.data);
+      setLoading(false);
+      onClose();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed To Create Chat",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      });
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Button
@@ -99,7 +129,13 @@ const Search = ({ user }) => {
                 <SkeletonAnim />
               ) : (
                 results?.map((result) => {
-                  return <UserListItem key={result._id} result={result} />;
+                  return (
+                    <UserListItem
+                      key={result._id}
+                      result={result}
+                      handleFunc={() => createChat(result._id)}
+                    />
+                  );
                 })
               )}
             </Box>
