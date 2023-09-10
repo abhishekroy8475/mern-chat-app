@@ -76,7 +76,7 @@ const Search = ({ user }) => {
       <Drawer isOpen={isOpen} placement="left" size="sm" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
+          <DrawerCloseButton onClick={() => setResults([])} />
           <DrawerHeader>Search Users To Chat</DrawerHeader>
           <DrawerBody>
             <Flex>
