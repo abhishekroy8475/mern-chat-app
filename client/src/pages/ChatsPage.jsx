@@ -23,9 +23,9 @@ const ChatsPage = () => {
   return (
     <>
       {user && (
-        <Box display="flex" flexDir="column" w="100%" h="100%">
+        <Box display="flex" flexDir="column" w="100%" h="100vh">
           <Navbar />
-          <Box display="flex" justifyContent="space-between" h="100%">
+          <Box display="flex" justifyContent="space-between" h="91vh">
             <MyChats fetchAgain={fetchAgain} />
             <ChatBox />
           </Box>

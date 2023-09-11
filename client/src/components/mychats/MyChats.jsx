@@ -51,11 +51,11 @@ const MyChats = ({ fetchAgain }) => {
       py={2}
       flexDir="column"
     >
-      <Box w="100%" h="100%" overflowY="hidden">
+      <Box overflowY="scroll">
         {!loading ? (
           <>
             {chats ? (
-              <Stack h="inherit" w="inherit" overflowY="auto">
+              <Stack>
                 {chats?.map((chat) => {
                   return (
                     <Box
@@ -74,7 +74,7 @@ const MyChats = ({ fetchAgain }) => {
                         <Text fontWeight="semibold">
                           {user?._id === chat.users[0]?._id
                             ? chat.users[1].name
-                            : chats.users[0].name}
+                            : chat.users[0].name}
                         </Text>
                         <Text>Latest Message</Text>
                       </Box>
