@@ -4,13 +4,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyChats from "../components/mychats/MyChats";
 import ChatBox from "../components/chatbox/ChatBox";
+import { ChatState } from "../context/ChatProvider";
 
 const ChatsPage = () => {
-  const [user, setUser] = useState();
-  const navigate = useNavigate();
-  const [selectedChat, setSelectedChat] = useState(false);
-  const [chats, setChats] = useState();
+  const { user, setUser } = ChatState();
   const [fetchAgain, setFetchAgain] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -25,22 +24,10 @@ const ChatsPage = () => {
     <>
       {user && (
         <>
-          <Navbar
-            setSelectedChat={setSelectedChat}
-            chats={chats}
-            setChats={setChats}
-            user={user}
-          />
+          <Navbar />
           <Box display="flex" justifyContent="space-between" h="91%">
-            <MyChats
-              selectedChat={selectedChat}
-              setSelectedChat={setSelectedChat}
-              chats={chats}
-              setChats={setChats}
-              user={user}
-              fetchAgain={fetchAgain}
-            />
-            <ChatBox selectedChat={selectedChat} />
+            <MyChats fetchAgain={fetchAgain} />
+            <ChatBox />
           </Box>
         </>
       )}

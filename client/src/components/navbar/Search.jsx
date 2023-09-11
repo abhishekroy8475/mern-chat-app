@@ -18,8 +18,10 @@ import { useState } from "react";
 import axios from "axios";
 import UserListItem from "../misc/UserListItem";
 import SkeletonAnim from "../anim/SkeletonAnim";
+import { ChatState } from "../../context/ChatProvider";
 
-const Search = ({ user, setSelectedChat, chats, setChats }) => {
+const Search = () => {
+  const { user, setSelectedChat, chats, setChats } = ChatState();
   const [query, setQuery] = useState();
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -45,9 +47,9 @@ const Search = ({ user, setSelectedChat, chats, setChats }) => {
       const config = { headers: { Authorization: `Bearer ${user.token}` } };
       const url = `http://localhost:5000/api/v1/user?search=${query}`;
 
-      const response = await axios.get(url, config);
+      const { data } = await axios.get(url, config);
 
-      setResults(response.data);
+      setResults(data);
       setLoading(false);
     } catch (error) {
       toast({

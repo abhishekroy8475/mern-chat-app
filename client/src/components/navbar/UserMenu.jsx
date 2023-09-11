@@ -15,8 +15,10 @@ import {
 } from "@chakra-ui/react";
 import ProfileModal from "../modals/ProfileModal";
 import { useNavigate } from "react-router-dom";
+import { ChatState } from "../../context/ChatProvider";
 
-const UserMenu = ({ user }) => {
+const UserMenu = () => {
+  const { user } = ChatState();
   const navigate = useNavigate();
 
   const logoutHandler = () => {

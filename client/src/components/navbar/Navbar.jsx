@@ -4,7 +4,7 @@ import Notification from "./Notification";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 
-const Navbar = ({ user, setSelectedChat, chats, setChats }) => {
+const Navbar = () => {
   return (
     <Flex
       justifyContent="space-between"
@@ -16,13 +16,8 @@ const Navbar = ({ user, setSelectedChat, chats, setChats }) => {
       <Logo />
       <HStack>
         <Notification />
-        <Search
-          user={user}
-          setSelectedChat={setSelectedChat}
-          chats={chats}
-          setChats={setChats}
-        />
-        <UserMenu user={user} />
+        <Search />
+        <UserMenu />
       </HStack>
     </Flex>
   );
