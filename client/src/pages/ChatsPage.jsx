@@ -23,13 +23,13 @@ const ChatsPage = () => {
   return (
     <>
       {user && (
-        <>
+        <Box display="flex" flexDir="column" w="100%" h="100%">
           <Navbar />
-          <Box display="flex" justifyContent="space-between" h="91%">
+          <Box display="flex" justifyContent="space-between" h="100%">
             <MyChats fetchAgain={fetchAgain} />
             <ChatBox />
           </Box>
-        </>
+        </Box>
       )}
     </>
   );
