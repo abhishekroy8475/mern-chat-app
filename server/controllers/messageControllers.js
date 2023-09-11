@@ -30,3 +30,14 @@ export const sendMessage = async (req, res, next) => {
     return next(error);
   }
 };
+
+export const fetchMessages = async (req, res, next) => {
+  try {
+    const messages = await Message.find({ chat: req.params.chatId })
+      .populate("sender", "name pic email")
+      .populate("chat");
+    return res.status(200).json(messages);
+  } catch (error) {
+    return next(error);
+  }
+};
