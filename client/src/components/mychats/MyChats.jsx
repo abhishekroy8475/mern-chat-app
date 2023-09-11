@@ -49,7 +49,6 @@ const MyChats = ({ fetchAgain }) => {
       px={{ base: 3, md: "", lg: 5 }}
       py={2}
       flexDir="column"
-      borderRight={{ base: "none", lg: "1px" }}
     >
       <Box w="100%" h="100%" overflowY="hidden">
         {!loading ? (

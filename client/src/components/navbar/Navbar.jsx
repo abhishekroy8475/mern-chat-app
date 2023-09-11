@@ -11,7 +11,6 @@ const Navbar = () => {
       alignItems="center"
       px={{ base: 3, md: "", lg: 5 }}
       py={2}
-      borderBottom="1px"
     >
       <Logo />
       <HStack>
