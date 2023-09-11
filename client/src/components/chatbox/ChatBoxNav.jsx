@@ -1,14 +1,10 @@
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import {
-  Avatar,
-  Button,
-  Flex,
-  Spacer,
-} from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Spacer } from "@chakra-ui/react";
 import { ChatState } from "../../context/ChatProvider";
+import ProfileModal from "../modals/ProfileModal";
 
 const ChatBoxNav = () => {
-  const { selectedChat, setSelectedChat } = ChatState();
+  const { selectedChat, setSelectedChat, user } = ChatState();
 
   return (
     <Flex
@@ -16,7 +12,7 @@ const ChatBoxNav = () => {
       borderBottom="1px"
       borderBottomColor="gray.200"
       px={2}
-      py={{lg: 2}}
+      py={{ lg: 2 }}
     >
       <Button
         leftIcon={<ChevronLeftIcon fontSize="30px" />}
@@ -26,7 +22,29 @@ const ChatBoxNav = () => {
         onClick={() => setSelectedChat()}
       ></Button>
       <Spacer />
-      <Avatar name="AR" size="sm" src="" />
+      <Box>
+        <ProfileModal
+          user={
+            user?._id === selectedChat.users[0]?._id
+              ? selectedChat.users[1]
+              : selectedChat.users[0]
+          }
+        >
+          <Avatar
+            name={
+              user?._id === selectedChat.users[0]?._id
+                ? selectedChat.users[1].name
+                : selectedChat.users[0].name
+            }
+            src={
+              user?._id === selectedChat.users[0]?._id
+                ? selectedChat.users[1].photo
+                : selectedChat.users[0].photo
+            }
+            size="sm"
+          />
+        </ProfileModal>
+      </Box>
     </Flex>
   );
 };
