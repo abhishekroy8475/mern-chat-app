@@ -6,6 +6,12 @@ const chatSchema = mongoose.Schema(
     isGroup: { type: Boolean, default: false },
     groupName: { type: String },
     groupAdmin: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    groupPhoto: {
+      type: String,
+      required: true,
+      default:
+        "https://res.cloudinary.com/abhishek-roy-cloud/image/upload/v1694433236/chatify-images/default_group_png_uosent.png",
+    },
   },
   { timestamps: true }
 );
