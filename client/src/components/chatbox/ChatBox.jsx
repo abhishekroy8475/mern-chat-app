@@ -1,7 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { ChatState } from "../../context/ChatProvider";
 import ChatBoxNav from "./ChatBoxNav";
 import ChatBoxInput from "./ChatBoxInput";
+import MessageBox from "./MessageBox";
+import { ChatIcon } from "@chakra-ui/icons";
 
 const ChatBox = () => {
   const { selectedChat } = ChatState();
@@ -22,11 +24,25 @@ const ChatBox = () => {
           w="100%"
           h="100%"
         >
-          <ChatBoxNav />
-          <Box h="100%">
-            hello
-          </Box>
-          <ChatBoxInput />
+          {selectedChat ? (
+            <>
+              <ChatBoxNav />
+              <MessageBox />
+              <ChatBoxInput />
+            </>
+          ) : (
+            <Flex
+              alignItems="center"
+              flexDir="column"
+              justifyContent="center"
+              h="100%"
+            >
+              <ChatIcon fontSize="9xl" />
+              <Text fontSize="2xl" mt={5}>
+                Click On User Or Search Users To Start Chat
+              </Text>
+            </Flex>
+          )}
         </Box>
       </Box>
     </>
