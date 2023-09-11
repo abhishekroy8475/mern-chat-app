@@ -39,10 +39,10 @@ const UserMenu = () => {
         </MenuButton>
         <MenuList>
           <ProfileModal user={user}>
-            <MenuItem icon={<InfoIcon />}>My Profile</MenuItem>
+            <MenuItem icon={<InfoIcon boxSize="15px" />}>My Profile</MenuItem>
           </ProfileModal>
-          <MenuItem icon={<AddIcon />}>New Group</MenuItem>
-          <MenuItem icon={<WarningIcon />} onClick={logoutHandler}>
+          <MenuItem icon={<AddIcon boxSize="15px" />}>New Group</MenuItem>
+          <MenuItem icon={<WarningIcon boxSize="15px" />} onClick={logoutHandler}>
             Log Out
           </MenuItem>
         </MenuList>
