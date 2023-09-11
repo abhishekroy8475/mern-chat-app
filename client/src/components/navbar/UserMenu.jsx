@@ -1,11 +1,15 @@
-import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {
+  AddIcon,
+  ChevronDownIcon,
+  InfoIcon,
+  WarningIcon,
+} from "@chakra-ui/icons";
 import {
   Avatar,
+  Box,
   Button,
-  IconButton,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
@@ -21,36 +25,27 @@ const UserMenu = ({ user }) => {
   };
 
   return (
-    <>
-      <IconButton
-        isRound={true}
-        variant="solid"
-        aria-label="Done"
-        fontSize={{ base: "18px", md: "20px" }}
-        icon={<BellIcon />}
-        mr={3}
-      />
-
+    <Box>
       <Menu>
         <MenuButton
           as={Button}
-          leftIcon={<HamburgerIcon />}
-          fontSize={{ base: "18px", md: "20px" }}
-          variant="outline"
-          rounded="full"
-          p={1}
+          rightIcon={<ChevronDownIcon />}
+          rounded="lg"
+          p={2}
         >
           <Avatar size="sm" name={user.name} src={user.photo} />
         </MenuButton>
         <MenuList>
-          <MenuItem fontWeight="semibold">
-            <ProfileModal user={user}>My Profile</ProfileModal>
+          <ProfileModal user={user}>
+            <MenuItem icon={<InfoIcon />}>My Profile</MenuItem>
+          </ProfileModal>
+          <MenuItem icon={<AddIcon />}>New Group</MenuItem>
+          <MenuItem icon={<WarningIcon />} onClick={logoutHandler}>
+            Log Out
           </MenuItem>
-          <MenuDivider />
-          <MenuItem onClick={logoutHandler}>Log Out</MenuItem>
         </MenuList>
       </Menu>
-    </>
+    </Box>
   );
 };
 

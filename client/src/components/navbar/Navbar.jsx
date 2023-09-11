@@ -1,29 +1,30 @@
-import { Flex, Spacer, Text } from "@chakra-ui/react";
+import { Flex, HStack } from "@chakra-ui/react";
+import Logo from "./Logo";
+import Notification from "./Notification";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, setSelectedChat, chats, setChats }) => {
   return (
-    <>
-      <Flex
-        alignItems="center"
-        bg="white"
-        p={{ base: 2, lg: 3 }}
-        boxShadow="md"
-      >
-        <Search user={user} />
-        <Spacer />
-        <Text
-          fontSize="3xl"
-          fontWeight="semibold"
-          display={{ base: "none", md: "block" }}
-        >
-          Chatify
-        </Text>
-        <Spacer />
+    <Flex
+      justifyContent="space-between"
+      alignItems="center"
+      px={{ base: 3, md: "", lg: 5 }}
+      py={2}
+      borderBottom="1px"
+    >
+      <Logo />
+      <HStack>
+        <Notification />
+        <Search
+          user={user}
+          setSelectedChat={setSelectedChat}
+          chats={chats}
+          setChats={setChats}
+        />
         <UserMenu user={user} />
-      </Flex>
-    </>
+      </HStack>
+    </Flex>
   );
 };
 

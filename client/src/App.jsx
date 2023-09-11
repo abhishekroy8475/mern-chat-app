@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 
 const App = () => {
   return (
-    <Box w="100%" h="100vh" bgColor="blackAlpha.200">
+    <Box w="100%" h="100vh">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/chats" element={<ChatsPage />} />

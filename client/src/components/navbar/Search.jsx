@@ -1,7 +1,6 @@
-import { Search2Icon, SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -11,6 +10,7 @@ import {
   Flex,
   IconButton,
   Input,
+  VStack,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -19,7 +19,7 @@ import axios from "axios";
 import UserListItem from "../misc/UserListItem";
 import SkeletonAnim from "../anim/SkeletonAnim";
 
-const Search = ({ user }) => {
+const Search = ({ user, setSelectedChat, chats, setChats }) => {
   const [query, setQuery] = useState();
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -74,9 +74,10 @@ const Search = ({ user }) => {
       };
       const url = "http://localhost:5000/api/v1/chat/create";
 
-      const response = await axios.post(url, { userId }, config);
+      const { data } = await axios.post(url, { userId }, config);
 
-      console.log(response.data);
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      setSelectedChat(data);
       setLoading(false);
       onClose();
     } catch (error) {
@@ -93,17 +94,15 @@ const Search = ({ user }) => {
   };
 
   return (
-    <>
-      <Button
-        rightIcon={<Search2Icon />}
-        size={{ base: "sm", md: "md" }}
-        colorScheme="blue"
+    <Box>
+      <IconButton
+        aria-label="search"
+        icon={<SearchIcon />}
+        rounded="full"
         onClick={onOpen}
-      >
-        Search Users...
-      </Button>
+      />
 
-      <Drawer isOpen={isOpen} placement="left" size="sm" onClose={onClose}>
+      <Drawer isOpen={isOpen} onClose={onClose} size="sm">
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton onClick={() => setResults([])} />
@@ -112,19 +111,19 @@ const Search = ({ user }) => {
             <Flex>
               <Input
                 rounded="full"
-                placeholder="Type here..."
+                placeholder="type here"
                 onChange={(e) => setQuery(e.target.value)}
               />
               <IconButton
-                isRound={true}
+                aria-label="search"
                 icon={<SearchIcon />}
-                colorScheme="blue"
+                rounded="full"
                 ml={2}
                 onClick={searchHandler}
                 isLoading={loading}
               />
             </Flex>
-            <Box>
+            <VStack align="stretch" mt={2}>
               {loading ? (
                 <SkeletonAnim />
               ) : (
@@ -138,11 +137,11 @@ const Search = ({ user }) => {
                   );
                 })
               )}
-            </Box>
+            </VStack>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </Box>
   );
 };
 

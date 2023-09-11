@@ -27,9 +27,8 @@ const HomePage = () => {
   return (
     <Container maxW="xl" p={1}>
       <Box
-        bg="white"
         borderRadius="lg"
-        boxShadow="md"
+        borderWidth="1px"
         p={3}
         textAlign="center"
         m={{ base: "20px 0 20px 0", md: "40px 0 20px 0" }}
@@ -38,12 +37,7 @@ const HomePage = () => {
           Chatify
         </Text>
       </Box>
-      <Box
-        borderRadius="lg"
-        boxShadow="md"
-        p={3}
-        bg="white"
-      >
+      <Box borderWidth="1px" borderRadius="lg" p={3}>
         <Tabs isFitted variant="soft-rounded">
           <TabList>
             <Tab>Log In</Tab>
