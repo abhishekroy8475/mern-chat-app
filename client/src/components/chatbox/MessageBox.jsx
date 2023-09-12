@@ -44,41 +44,47 @@ const MessageBox = () => {
   }, [selectedChat]);
 
   return (
-    <Box borderRadius="lg" h="100%" overflow="scroll" bgColor="gray.200" m={2}>
-      <Flex flexDir="column-reverse" p={2}>
-          {messages?.map((message) => {
-            return (
-              <Flex
-                flexDir={{
-                  base: message.sender._id === user._id ? "row-reverse" : "row",
-                }}
-                ml={{ base: message.sender._id === user._id ? "auto" : "" }}
-                w="60%"
-                p={1}
-                key={message._id}
-              >
-                <Avatar
-                  size="sm"
-                  name={message.sender.name}
-                  src={message.sender.photo}
-                />
-                <Text
-                  mx={2}
-                  fontSize="md"
-                  bgColor={{
-                    base:
-                      message.sender._id === user._id ? "gray.500" : "blue.400",
-                  }}
-                  color="white"
-                  px={3}
-                  borderRadius="lg"
-                >
-                  {message.content}
-                </Text>
-              </Flex>
-            );
-          })}
-      </Flex>
+    <Box
+      borderRadius="lg"
+      h="100%"
+      display="flex"
+      flexDir="column-reverse"
+      p={2}
+      overflow="scroll"
+      bgColor="gray.200"
+      m={2}
+    >
+      {messages?.map((message) => {
+        return (
+          <Flex
+            flexDir={{
+              base: message.sender._id === user._id ? "row-reverse" : "row",
+            }}
+            ml={{ base: message.sender._id === user._id ? "auto" : "" }}
+            w="60%"
+            p={1}
+            key={message._id}
+          >
+            <Avatar
+              size="sm"
+              name={message.sender.name}
+              src={message.sender.photo}
+            />
+            <Text
+              mx={2}
+              fontSize="md"
+              bgColor={{
+                base: message.sender._id === user._id ? "gray.500" : "blue.400",
+              }}
+              color="white"
+              px={3}
+              borderRadius="lg"
+            >
+              {message.content}
+            </Text>
+          </Flex>
+        );
+      })}
     </Box>
   );
 };
